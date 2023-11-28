@@ -5,10 +5,10 @@
 }
 
 <link rel="stylesheet" href="/Content/estilos.css" />
-<h2>Index</h2>
+<h2>Trabajadores</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -54,9 +54,9 @@
             @Html.DisplayFor(modelItem => item.tel_trabajador.codigo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.codigo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.codigo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.codigo })
+            @Html.ActionLink("Editar", "Edit", new { id=item.codigo }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.codigo }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.codigo })
         </td>
     </tr>
 }

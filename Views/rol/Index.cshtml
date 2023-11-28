@@ -5,10 +5,10 @@
 }
 
 <link rel="stylesheet" href="/Content/estilos.css" />
-<h2>Index</h2>
+<h2>Rol</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -24,9 +24,9 @@
             @Html.DisplayFor(modelItem => item.rol1)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_rol }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_rol }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_rol })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_rol }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_rol }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_rol })
         </td>
     </tr>
 }

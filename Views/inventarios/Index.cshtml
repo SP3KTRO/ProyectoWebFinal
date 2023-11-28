@@ -5,10 +5,10 @@
 }
 
 <link rel="stylesheet" href="/Content/estilos.css" />
-<h2>Index</h2>
+<h2>Inventarios</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -36,9 +36,9 @@
             @Html.DisplayFor(modelItem => item.evento.nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_inventario }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_inventario }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_inventario })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_inventario }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_inventario }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_inventario })
         </td>
     </tr>
 }

@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     color:black;
-    background-image: url('/Img/background.gif'); /* Ruta al archivo GIF */
+    background-image: url('/Img/fondos.gif'); /* Ruta al archivo GIF */
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -16,16 +16,31 @@ h1 {
     text-align: center;
 }
 .cumple {
-    width: 350px;
+    width: 400px;
     height: auto;
     border-radius: 10px
 }
 .fiesta {
-    width: 350px;
+    width: 400px;
     height: auto;
     border-radius: 10px
 }
 .calendario {
+    width: 400px;
+    height: auto;
+    border-radius: 10px
+}
+.evento{
+    width: 400px;
+    height: auto;
+    border-radius: 10px
+}
+.uno {
+    width: 350px;
+    height: auto;
+    border-radius: 10px
+}
+.dos {
     width: 350px;
     height: auto;
     border-radius: 10px
