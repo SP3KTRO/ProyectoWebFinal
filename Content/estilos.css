@@ -1,6 +1,5 @@
 ﻿body {
     font-family: 'Times New Roman', sans-serif;
-    color: snow;
     margin: 0;
     padding: 0;
     background-image: url('/Img/back.gif'); /* Ruta al archivo GIF */
@@ -31,15 +30,5 @@ h1 {
     border-radius: 10px
 }
 .navbar .navbar-nav .nav-link {
-    color: darkgoldenrod;
-}
-.dos {
-    display: flex;
-    justify-content: right;
-    text-align: right;
-}
-.tres {
-    display: flex;
-    justify-content: left;
-    text-align: left;
+    color: orange;
 }
