@@ -22,14 +22,23 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
 
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Clientes", "Index", "Clientes", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Crear evento", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Ver eventos", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-            </div>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Clientes", "Index", "clientes", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Estadisticas de Eventos", "Index", "estadisticas_evento", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Eventos", "Index", "eventos", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Inventarios", "Index", "inventarios", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Lugares", "Index", "lugares", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Puntuación de Evento", "Index", "puntuacion_evento", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Rol", "Index", "rol", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Teléfono Cliente", "Index", "tel_cliente", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Teléfono Trabajador", "Index", "tel_trabajador", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Tipo", "Index", "tipo", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Trabajador", "Index", "trabajador", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Usuarios", "Index", "usuarios", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </div>
         </div>
     </nav>
     <div class="container body-content">

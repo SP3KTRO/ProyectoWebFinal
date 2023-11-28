@@ -15,3 +15,31 @@ h1 {
     font-family: 'Nabla', sans-serif;
     text-align: center;
 }
+.cumple {
+    width: 350px;
+    height: auto;
+    border-radius: 10px
+}
+.fiesta {
+    width: 350px;
+    height: auto;
+    border-radius: 10px
+}
+.calendario {
+    width: 350px;
+    height: auto;
+    border-radius: 10px
+}
+.navbar .navbar-nav .nav-link {
+    color: darkgoldenrod;
+}
+.dos {
+    display: flex;
+    justify-content: right;
+    text-align: right;
+}
+.tres {
+    display: flex;
+    justify-content: left;
+    text-align: left;
+}
