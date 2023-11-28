@@ -1,0 +1,17 @@
+﻿body {
+    font-family: 'Times New Roman', sans-serif;
+    color: snow;
+    margin: 0;
+    padding: 0;
+    background-image: url('/Img/back.gif'); /* Ruta al archivo GIF */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+.titulo{
+    font-family: 'Nabla', sans-serif;
+}
+h1 {
+    font-family: 'Nabla', sans-serif;
+    text-align: center;
+}

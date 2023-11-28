@@ -1,0 +1,901 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="proyectowebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="asistir">
+          <Key>
+            <PropertyRef Name="cedula_cli" />
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="cedula_cli" Type="int" Nullable="false" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="correo" Type="varchar" MaxLength="50" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="estadisticas_evento">
+          <Key>
+            <PropertyRef Name="id_estadisticas" />
+          </Key>
+          <Property Name="id_estadisticas" Type="int" Nullable="false" />
+          <Property Name="puntuacion" Type="int" Nullable="false" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
+          <Property Name="fecha_compra" Type="date" Nullable="false" />
+          <Property Name="cedula_cli" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="evento">
+          <Key>
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_evento" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="id_tipo" Type="int" Nullable="false" />
+          <Property Name="id_lugar" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="codigo_tra" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inventario">
+          <Key>
+            <PropertyRef Name="id_inventario" />
+          </Key>
+          <Property Name="id_inventario" Type="int" Nullable="false" />
+          <Property Name="entradas_disponibles" Type="int" Nullable="false" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
+          <Property Name="precio_entrada" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lugar">
+          <Key>
+            <PropertyRef Name="id_lugar" />
+          </Key>
+          <Property Name="id_lugar" Type="int" Nullable="false" />
+          <Property Name="lugar" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="puntuacion_evento">
+          <Key>
+            <PropertyRef Name="id_puntuacion" />
+          </Key>
+          <Property Name="id_puntuacion" Type="int" Nullable="false" />
+          <Property Name="puntuacion" Type="int" Nullable="false" />
+          <Property Name="comentarios" Type="varchar" MaxLength="50" />
+          <Property Name="id_evento" Type="int" Nullable="false" />
+          <Property Name="cedula_cli" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="int" Nullable="false" />
+          <Property Name="rol" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tel_cliente">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="int" Nullable="false" />
+          <Property Name="telefono" Type="int" />
+        </EntityType>
+        <EntityType Name="tel_trabajador">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" Nullable="false" />
+          <Property Name="telefono" Type="int" />
+        </EntityType>
+        <EntityType Name="tipo">
+          <Key>
+            <PropertyRef Name="id_tipo" />
+          </Key>
+          <Property Name="id_tipo" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="trabajador">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="cargo" Type="varchar" MaxLength="50" />
+          <Property Name="correo" Type="varchar" MaxLength="50" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_ingreso" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="nombre_usuario" Type="varchar" MaxLength="50" />
+          <Property Name="id_rol" Type="int" Nullable="false" />
+          <Property Name="codigo_tra" Type="int" Nullable="false" />
+          <Property Name="cedula_cli" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__asistir__cedula___3D5E1FD2">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="asistir" Type="Self.asistir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="asistir">
+              <PropertyRef Name="cedula_cli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__asistir__id_even__3E52440B">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="asistir" Type="Self.asistir" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="asistir">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__estadisti__cedul__44FF419A">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="estadisticas_evento" Type="Self.estadisticas_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="estadisticas_evento">
+              <PropertyRef Name="cedula_cli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__estadisti__id_ev__440B1D61">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="estadisticas_evento" Type="Self.estadisticas_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="estadisticas_evento">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__evento__codigo_t__3A81B327">
+          <End Role="trabajador" Type="Self.trabajador" Multiplicity="1" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trabajador">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="evento">
+              <PropertyRef Name="codigo_tra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__evento__id_lugar__398D8EEE">
+          <End Role="lugar" Type="Self.lugar" Multiplicity="1" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lugar">
+              <PropertyRef Name="id_lugar" />
+            </Principal>
+            <Dependent Role="evento">
+              <PropertyRef Name="id_lugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__evento__id_tipo__38996AB5">
+          <End Role="tipo" Type="Self.tipo" Multiplicity="1" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo">
+              <PropertyRef Name="id_tipo" />
+            </Principal>
+            <Dependent Role="evento">
+              <PropertyRef Name="id_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__inventari__id_ev__412EB0B6">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="inventario" Type="Self.inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="inventario">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__puntuacio__cedul__48CFD27E">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="puntuacion_evento" Type="Self.puntuacion_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="puntuacion_evento">
+              <PropertyRef Name="cedula_cli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__puntuacio__id_ev__47DBAE45">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="puntuacion_evento" Type="Self.puntuacion_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="puntuacion_evento">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tel_clien__cedul__267ABA7A">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="tel_cliente" Type="Self.tel_cliente" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="tel_cliente">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tel_traba__codig__2B3F6F97">
+          <End Role="trabajador" Type="Self.trabajador" Multiplicity="1" />
+          <End Role="tel_trabajador" Type="Self.tel_trabajador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="trabajador">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="tel_trabajador">
+              <PropertyRef Name="codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__cedula___31EC6D26">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="cedula_cli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__codigo___30F848ED">
+          <End Role="trabajador" Type="Self.trabajador" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trabajador">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="codigo_tra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__id_rol__300424B4">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="proyectowebModelStoreContainer">
+          <EntitySet Name="asistir" EntityType="Self.asistir" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estadisticas_evento" EntityType="Self.estadisticas_evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="evento" EntityType="Self.evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inventario" EntityType="Self.inventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lugar" EntityType="Self.lugar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="puntuacion_evento" EntityType="Self.puntuacion_evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tel_cliente" EntityType="Self.tel_cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tel_trabajador" EntityType="Self.tel_trabajador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo" EntityType="Self.tipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trabajador" EntityType="Self.trabajador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__asistir__cedula___3D5E1FD2" Association="Self.FK__asistir__cedula___3D5E1FD2">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="asistir" EntitySet="asistir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__asistir__id_even__3E52440B" Association="Self.FK__asistir__id_even__3E52440B">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="asistir" EntitySet="asistir" />
+          </AssociationSet>
+          <AssociationSet Name="FK__estadisti__cedul__44FF419A" Association="Self.FK__estadisti__cedul__44FF419A">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="estadisticas_evento" EntitySet="estadisticas_evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__estadisti__id_ev__440B1D61" Association="Self.FK__estadisti__id_ev__440B1D61">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="estadisticas_evento" EntitySet="estadisticas_evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__evento__codigo_t__3A81B327" Association="Self.FK__evento__codigo_t__3A81B327">
+            <End Role="trabajador" EntitySet="trabajador" />
+            <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__evento__id_lugar__398D8EEE" Association="Self.FK__evento__id_lugar__398D8EEE">
+            <End Role="lugar" EntitySet="lugar" />
+            <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__evento__id_tipo__38996AB5" Association="Self.FK__evento__id_tipo__38996AB5">
+            <End Role="tipo" EntitySet="tipo" />
+            <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__inventari__id_ev__412EB0B6" Association="Self.FK__inventari__id_ev__412EB0B6">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="inventario" EntitySet="inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__puntuacio__cedul__48CFD27E" Association="Self.FK__puntuacio__cedul__48CFD27E">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="puntuacion_evento" EntitySet="puntuacion_evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__puntuacio__id_ev__47DBAE45" Association="Self.FK__puntuacio__id_ev__47DBAE45">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="puntuacion_evento" EntitySet="puntuacion_evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tel_clien__cedul__267ABA7A" Association="Self.FK__tel_clien__cedul__267ABA7A">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="tel_cliente" EntitySet="tel_cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tel_traba__codig__2B3F6F97" Association="Self.FK__tel_traba__codig__2B3F6F97">
+            <End Role="trabajador" EntitySet="trabajador" />
+            <End Role="tel_trabajador" EntitySet="tel_trabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__cedula___31EC6D26" Association="Self.FK__usuario__cedula___31EC6D26">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__codigo___30F848ED" Association="Self.FK__usuario__codigo___30F848ED">
+            <End Role="trabajador" EntitySet="trabajador" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__id_rol__300424B4" Association="Self.FK__usuario__id_rol__300424B4">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="proyectowebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="estadisticas_evento" Relationship="Self.FK__estadisti__cedul__44FF419A" FromRole="cliente" ToRole="estadisticas_evento" />
+          <NavigationProperty Name="puntuacion_evento" Relationship="Self.FK__puntuacio__cedul__48CFD27E" FromRole="cliente" ToRole="puntuacion_evento" />
+          <NavigationProperty Name="tel_cliente" Relationship="Self.FK__tel_clien__cedul__267ABA7A" FromRole="cliente" ToRole="tel_cliente" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__usuario__cedula___31EC6D26" FromRole="cliente" ToRole="usuario" />
+          <NavigationProperty Name="evento" Relationship="Self.asistir" FromRole="cliente" ToRole="evento" />
+        </EntityType>
+        <EntityType Name="estadisticas_evento">
+          <Key>
+            <PropertyRef Name="id_estadisticas" />
+          </Key>
+          <Property Name="id_estadisticas" Type="Int32" Nullable="false" />
+          <Property Name="puntuacion" Type="Int32" Nullable="false" />
+          <Property Name="id_evento" Type="Int32" Nullable="false" />
+          <Property Name="fecha_compra" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cedula_cli" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__estadisti__cedul__44FF419A" FromRole="estadisticas_evento" ToRole="cliente" />
+          <NavigationProperty Name="evento" Relationship="Self.FK__estadisti__id_ev__440B1D61" FromRole="estadisticas_evento" ToRole="evento" />
+        </EntityType>
+        <EntityType Name="evento">
+          <Key>
+            <PropertyRef Name="id_evento" />
+          </Key>
+          <Property Name="id_evento" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo" Type="Int32" Nullable="false" />
+          <Property Name="id_lugar" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="codigo_tra" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="estadisticas_evento" Relationship="Self.FK__estadisti__id_ev__440B1D61" FromRole="evento" ToRole="estadisticas_evento" />
+          <NavigationProperty Name="trabajador" Relationship="Self.FK__evento__codigo_t__3A81B327" FromRole="evento" ToRole="trabajador" />
+          <NavigationProperty Name="lugar" Relationship="Self.FK__evento__id_lugar__398D8EEE" FromRole="evento" ToRole="lugar" />
+          <NavigationProperty Name="tipo" Relationship="Self.FK__evento__id_tipo__38996AB5" FromRole="evento" ToRole="tipo" />
+          <NavigationProperty Name="inventario" Relationship="Self.FK__inventari__id_ev__412EB0B6" FromRole="evento" ToRole="inventario" />
+          <NavigationProperty Name="puntuacion_evento" Relationship="Self.FK__puntuacio__id_ev__47DBAE45" FromRole="evento" ToRole="puntuacion_evento" />
+          <NavigationProperty Name="cliente" Relationship="Self.asistir" FromRole="evento" ToRole="cliente" />
+        </EntityType>
+        <EntityType Name="inventario">
+          <Key>
+            <PropertyRef Name="id_inventario" />
+          </Key>
+          <Property Name="id_inventario" Type="Int32" Nullable="false" />
+          <Property Name="entradas_disponibles" Type="Int32" Nullable="false" />
+          <Property Name="id_evento" Type="Int32" Nullable="false" />
+          <Property Name="precio_entrada" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="evento" Relationship="Self.FK__inventari__id_ev__412EB0B6" FromRole="inventario" ToRole="evento" />
+        </EntityType>
+        <EntityType Name="lugar">
+          <Key>
+            <PropertyRef Name="id_lugar" />
+          </Key>
+          <Property Name="id_lugar" Type="Int32" Nullable="false" />
+          <Property Name="lugar1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="evento" Relationship="Self.FK__evento__id_lugar__398D8EEE" FromRole="lugar" ToRole="evento" />
+        </EntityType>
+        <EntityType Name="puntuacion_evento">
+          <Key>
+            <PropertyRef Name="id_puntuacion" />
+          </Key>
+          <Property Name="id_puntuacion" Type="Int32" Nullable="false" />
+          <Property Name="puntuacion" Type="Int32" Nullable="false" />
+          <Property Name="comentarios" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_evento" Type="Int32" Nullable="false" />
+          <Property Name="cedula_cli" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__puntuacio__cedul__48CFD27E" FromRole="puntuacion_evento" ToRole="cliente" />
+          <NavigationProperty Name="evento" Relationship="Self.FK__puntuacio__id_ev__47DBAE45" FromRole="puntuacion_evento" ToRole="evento" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_rol" Type="Int32" Nullable="false" />
+          <Property Name="rol1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__usuario__id_rol__300424B4" FromRole="rol" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="tel_cliente">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="Int32" Nullable="false" />
+          <Property Name="telefono" Type="Int32" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__tel_clien__cedul__267ABA7A" FromRole="tel_cliente" ToRole="cliente" />
+        </EntityType>
+        <EntityType Name="tel_trabajador">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" />
+          <Property Name="telefono" Type="Int32" />
+          <NavigationProperty Name="trabajador" Relationship="Self.FK__tel_traba__codig__2B3F6F97" FromRole="tel_trabajador" ToRole="trabajador" />
+        </EntityType>
+        <EntityType Name="tipo">
+          <Key>
+            <PropertyRef Name="id_tipo" />
+          </Key>
+          <Property Name="id_tipo" Type="Int32" Nullable="false" />
+          <Property Name="tipo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="evento" Relationship="Self.FK__evento__id_tipo__38996AB5" FromRole="tipo" ToRole="evento" />
+        </EntityType>
+        <EntityType Name="trabajador">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cargo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_ingreso" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="evento" Relationship="Self.FK__evento__codigo_t__3A81B327" FromRole="trabajador" ToRole="evento" />
+          <NavigationProperty Name="tel_trabajador" Relationship="Self.FK__tel_traba__codig__2B3F6F97" FromRole="trabajador" ToRole="tel_trabajador" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK__usuario__codigo___30F848ED" FromRole="trabajador" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_rol" Type="Int32" Nullable="false" />
+          <Property Name="codigo_tra" Type="Int32" Nullable="false" />
+          <Property Name="cedula_cli" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.FK__usuario__cedula___31EC6D26" FromRole="usuario" ToRole="cliente" />
+          <NavigationProperty Name="rol" Relationship="Self.FK__usuario__id_rol__300424B4" FromRole="usuario" ToRole="rol" />
+          <NavigationProperty Name="trabajador" Relationship="Self.FK__usuario__codigo___30F848ED" FromRole="usuario" ToRole="trabajador" />
+        </EntityType>
+        <Association Name="FK__estadisti__cedul__44FF419A">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="estadisticas_evento" Type="Self.estadisticas_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="estadisticas_evento">
+              <PropertyRef Name="cedula_cli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__puntuacio__cedul__48CFD27E">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="puntuacion_evento" Type="Self.puntuacion_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="puntuacion_evento">
+              <PropertyRef Name="cedula_cli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tel_clien__cedul__267ABA7A">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="tel_cliente" Type="Self.tel_cliente" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="tel_cliente">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__cedula___31EC6D26">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="cedula_cli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__estadisti__id_ev__440B1D61">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="estadisticas_evento" Type="Self.estadisticas_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="estadisticas_evento">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__evento__codigo_t__3A81B327">
+          <End Role="trabajador" Type="Self.trabajador" Multiplicity="1" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trabajador">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="evento">
+              <PropertyRef Name="codigo_tra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__evento__id_lugar__398D8EEE">
+          <End Role="lugar" Type="Self.lugar" Multiplicity="1" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lugar">
+              <PropertyRef Name="id_lugar" />
+            </Principal>
+            <Dependent Role="evento">
+              <PropertyRef Name="id_lugar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__evento__id_tipo__38996AB5">
+          <End Role="tipo" Type="Self.tipo" Multiplicity="1" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo">
+              <PropertyRef Name="id_tipo" />
+            </Principal>
+            <Dependent Role="evento">
+              <PropertyRef Name="id_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__inventari__id_ev__412EB0B6">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="inventario" Type="Self.inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="inventario">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__puntuacio__id_ev__47DBAE45">
+          <End Role="evento" Type="Self.evento" Multiplicity="1" />
+          <End Role="puntuacion_evento" Type="Self.puntuacion_evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="evento">
+              <PropertyRef Name="id_evento" />
+            </Principal>
+            <Dependent Role="puntuacion_evento">
+              <PropertyRef Name="id_evento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__id_rol__300424B4">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="id_rol" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="id_rol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tel_traba__codig__2B3F6F97">
+          <End Role="trabajador" Type="Self.trabajador" Multiplicity="1" />
+          <End Role="tel_trabajador" Type="Self.tel_trabajador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="trabajador">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="tel_trabajador">
+              <PropertyRef Name="codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__usuario__codigo___30F848ED">
+          <End Role="trabajador" Type="Self.trabajador" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trabajador">
+              <PropertyRef Name="codigo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="codigo_tra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="asistir">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+          <End Role="evento" Type="Self.evento" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="proyectowebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cliente" EntityType="Self.cliente" />
+          <EntitySet Name="estadisticas_evento" EntityType="Self.estadisticas_evento" />
+          <EntitySet Name="evento" EntityType="Self.evento" />
+          <EntitySet Name="inventario" EntityType="Self.inventario" />
+          <EntitySet Name="lugar" EntityType="Self.lugar" />
+          <EntitySet Name="puntuacion_evento" EntityType="Self.puntuacion_evento" />
+          <EntitySet Name="rol" EntityType="Self.rol" />
+          <EntitySet Name="tel_cliente" EntityType="Self.tel_cliente" />
+          <EntitySet Name="tel_trabajador" EntityType="Self.tel_trabajador" />
+          <EntitySet Name="tipo" EntityType="Self.tipo" />
+          <EntitySet Name="trabajador" EntityType="Self.trabajador" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK__estadisti__cedul__44FF419A" Association="Self.FK__estadisti__cedul__44FF419A">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="estadisticas_evento" EntitySet="estadisticas_evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__puntuacio__cedul__48CFD27E" Association="Self.FK__puntuacio__cedul__48CFD27E">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="puntuacion_evento" EntitySet="puntuacion_evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tel_clien__cedul__267ABA7A" Association="Self.FK__tel_clien__cedul__267ABA7A">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="tel_cliente" EntitySet="tel_cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__cedula___31EC6D26" Association="Self.FK__usuario__cedula___31EC6D26">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__estadisti__id_ev__440B1D61" Association="Self.FK__estadisti__id_ev__440B1D61">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="estadisticas_evento" EntitySet="estadisticas_evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__evento__codigo_t__3A81B327" Association="Self.FK__evento__codigo_t__3A81B327">
+            <End Role="trabajador" EntitySet="trabajador" />
+            <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__evento__id_lugar__398D8EEE" Association="Self.FK__evento__id_lugar__398D8EEE">
+            <End Role="lugar" EntitySet="lugar" />
+            <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__evento__id_tipo__38996AB5" Association="Self.FK__evento__id_tipo__38996AB5">
+            <End Role="tipo" EntitySet="tipo" />
+            <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__inventari__id_ev__412EB0B6" Association="Self.FK__inventari__id_ev__412EB0B6">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="inventario" EntitySet="inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__puntuacio__id_ev__47DBAE45" Association="Self.FK__puntuacio__id_ev__47DBAE45">
+            <End Role="evento" EntitySet="evento" />
+            <End Role="puntuacion_evento" EntitySet="puntuacion_evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__id_rol__300424B4" Association="Self.FK__usuario__id_rol__300424B4">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tel_traba__codig__2B3F6F97" Association="Self.FK__tel_traba__codig__2B3F6F97">
+            <End Role="trabajador" EntitySet="trabajador" />
+            <End Role="tel_trabajador" EntitySet="tel_trabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK__usuario__codigo___30F848ED" Association="Self.FK__usuario__codigo___30F848ED">
+            <End Role="trabajador" EntitySet="trabajador" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="asistir" Association="Self.asistir">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="evento" EntitySet="evento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="proyectowebModelStoreContainer" CdmEntityContainer="proyectowebEntities">
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="proyectowebModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estadisticas_evento">
+            <EntityTypeMapping TypeName="proyectowebModel.estadisticas_evento">
+              <MappingFragment StoreEntitySet="estadisticas_evento">
+                <ScalarProperty Name="id_estadisticas" ColumnName="id_estadisticas" />
+                <ScalarProperty Name="puntuacion" ColumnName="puntuacion" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="fecha_compra" ColumnName="fecha_compra" />
+                <ScalarProperty Name="cedula_cli" ColumnName="cedula_cli" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="evento">
+            <EntityTypeMapping TypeName="proyectowebModel.evento">
+              <MappingFragment StoreEntitySet="evento">
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+                <ScalarProperty Name="id_lugar" ColumnName="id_lugar" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="codigo_tra" ColumnName="codigo_tra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventario">
+            <EntityTypeMapping TypeName="proyectowebModel.inventario">
+              <MappingFragment StoreEntitySet="inventario">
+                <ScalarProperty Name="id_inventario" ColumnName="id_inventario" />
+                <ScalarProperty Name="entradas_disponibles" ColumnName="entradas_disponibles" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="precio_entrada" ColumnName="precio_entrada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lugar">
+            <EntityTypeMapping TypeName="proyectowebModel.lugar">
+              <MappingFragment StoreEntitySet="lugar">
+                <ScalarProperty Name="id_lugar" ColumnName="id_lugar" />
+                <ScalarProperty Name="lugar1" ColumnName="lugar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="puntuacion_evento">
+            <EntityTypeMapping TypeName="proyectowebModel.puntuacion_evento">
+              <MappingFragment StoreEntitySet="puntuacion_evento">
+                <ScalarProperty Name="id_puntuacion" ColumnName="id_puntuacion" />
+                <ScalarProperty Name="puntuacion" ColumnName="puntuacion" />
+                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+                <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+                <ScalarProperty Name="cedula_cli" ColumnName="cedula_cli" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol">
+            <EntityTypeMapping TypeName="proyectowebModel.rol">
+              <MappingFragment StoreEntitySet="rol">
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="rol1" ColumnName="rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_cliente">
+            <EntityTypeMapping TypeName="proyectowebModel.tel_cliente">
+              <MappingFragment StoreEntitySet="tel_cliente">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tel_trabajador">
+            <EntityTypeMapping TypeName="proyectowebModel.tel_trabajador">
+              <MappingFragment StoreEntitySet="tel_trabajador">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo">
+            <EntityTypeMapping TypeName="proyectowebModel.tipo">
+              <MappingFragment StoreEntitySet="tipo">
+                <ScalarProperty Name="id_tipo" ColumnName="id_tipo" />
+                <ScalarProperty Name="tipo1" ColumnName="tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trabajador">
+            <EntityTypeMapping TypeName="proyectowebModel.trabajador">
+              <MappingFragment StoreEntitySet="trabajador">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="fecha_ingreso" ColumnName="fecha_ingreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="proyectowebModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="codigo_tra" ColumnName="codigo_tra" />
+                <ScalarProperty Name="cedula_cli" ColumnName="cedula_cli" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="asistir" TypeName="proyectowebModel.asistir" StoreEntitySet="asistir">
+            <EndProperty Name="cliente">
+              <ScalarProperty Name="cedula" ColumnName="cedula_cli" />
+            </EndProperty>
+            <EndProperty Name="evento">
+              <ScalarProperty Name="id_evento" ColumnName="id_evento" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

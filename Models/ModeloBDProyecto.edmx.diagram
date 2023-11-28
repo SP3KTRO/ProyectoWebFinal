@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a5d802a88eb84faca53afb9f91bb0f68" Name="Diagram1">
+        <EntityTypeShape EntityType="proyectowebModel.cliente" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.estadisticas_evento" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.evento" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.inventario" Width="1.5" PointX="8.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.lugar" Width="1.5" PointX="3.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.puntuacion_evento" Width="1.5" PointX="8.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.rol" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.tel_cliente" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.tel_trabajador" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.tipo" Width="1.5" PointX="3.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.trabajador" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="proyectowebModel.usuario" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="proyectowebModel.FK__estadisti__cedul__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__puntuacio__cedul__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__tel_clien__cedul__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__usuario__cedula___31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__estadisti__id_ev__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__evento__codigo_t__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__evento__id_lugar__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__evento__id_tipo__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__inventari__id_ev__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__puntuacio__id_ev__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__usuario__id_rol__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__tel_traba__codig__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.FK__usuario__codigo___30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="proyectowebModel.asistir" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
