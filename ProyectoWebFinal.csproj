@@ -240,6 +240,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\clientesController.cs" />
     <Compile Include="Controllers\estadisticas_eventoController.cs" />
     <Compile Include="Controllers\eventosController.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logica\Logica_usuarios.cs" />
     <Compile Include="Models\cliente.cs">
       <DependentUpon>ModeloBDProyecto.tt</DependentUpon>
     </Compile>
