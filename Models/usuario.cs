@@ -16,6 +16,7 @@ namespace ProyectoWebFinal.Models
     {
         public int id_usuario { get; set; }
         public string nombre_usuario { get; set; }
+        public string contrasena { get; set; }
         public int id_rol { get; set; }
         public int codigo_tra { get; set; }
         public int cedula_cli { get; set; }

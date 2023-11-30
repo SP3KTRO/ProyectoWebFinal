@@ -479,7 +479,11 @@
     <Content Include="Views\usuarios\Details.cshtml" />
     <Content Include="Views\usuarios\Edit.cshtml" />
     <Content Include="Views\usuarios\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\reporteEvento\vistaEventos.cshtml" />
+=======
+    <Content Include="Views\Acceso\Index.cshtml" />
+>>>>>>> 60119420249cc01092899c8aebca571afd02b246
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
