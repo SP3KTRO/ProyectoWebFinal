@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProyectoWebFinal.Models.estadisticas_evento>
+
+@{
+    ViewBag.Title = "Reporte Estadisticas Eventos";
+}
+<h2>Reporte de Eventos</h2>
+<table class="table">
+    <tr>
+        <th>
+           Puntuacion
+        </th>
+        <th>
+            Fecha de compra
+        </th>
+        <th>
+            Nombre del cliente
+        </th>
+        <th>
+            Nombre del evento
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.puntuacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_compra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cliente.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.evento.nombre)
+            </td>
+        </tr>
+    }
+</table>
+
+<div style="padding:10px;border:1px solid black">
+    <div>
+        <a href="@Url.Action("vistaReporteEventos", new { id = "pdf" })">
+            Reporte PDF
+        </a>
+    </div>
+    <div>
+        <a href="@Url.Action("VistaReporteEventos", new { id = "Excel" })">
+            Reporte EXCEL
+        </a>
+    </div>
+    <div>
+        <a href="@Url.Action("vistaReporteEventos", new { id = "Word" })">
+            Reporte WORD
+        </a>
+    </div>
+</div>
