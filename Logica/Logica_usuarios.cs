@@ -29,6 +29,7 @@ public class Logica_usuarios
                         id_usuario = (int)datos["IdUsuario"],
                         nombre_usuario = datos["Nombres"].ToString(),
                         id_rol = (int)datos["IdRol"],
+                        contrasena = datos["Clave"].ToString(),
                     };
                 }
             }
