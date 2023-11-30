@@ -26,4 +26,12 @@ namespace ProyectoWebFinal.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<usuario> usuario { get; set; }
     }
+
+    public enum Rol
+    {
+        Administrador = 1,
+        Cliente = 2,
+        Trabajador = 3
+    }
+
 }
